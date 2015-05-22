@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546571B0F8C4100385C63 /* AppDelegate.swift */; };
-		35F5465A1B0F8C4100385C63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546591B0F8C4100385C63 /* ViewController.swift */; };
 		35F5465D1B0F8C4100385C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F5465B1B0F8C4100385C63 /* Main.storyboard */; };
 		35F5465F1B0F8C4100385C63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F5465E1B0F8C4100385C63 /* Images.xcassets */; };
 		35F546621B0F8C4100385C63 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35F546601B0F8C4100385C63 /* LaunchScreen.xib */; };
 		35F5466E1B0F8C4100385C63 /* ThereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5466D1B0F8C4100385C63 /* ThereTests.swift */; };
+		35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546771B0F8E3800385C63 /* MapViewController.swift */; };
+		35F5467A1B0F8F7B00385C63 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 35F546791B0F8F7B00385C63 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +30,14 @@
 		35F546521B0F8C4100385C63 /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F546561B0F8C4100385C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F546571B0F8C4100385C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		35F546591B0F8C4100385C63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		35F5465C1B0F8C4100385C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35F5465E1B0F8C4100385C63 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		35F546611B0F8C4100385C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		35F546671B0F8C4100385C63 /* ThereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F5466C1B0F8C4100385C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F5466D1B0F8C4100385C63 /* ThereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThereTests.swift; sourceTree = "<group>"; };
+		35F546771B0F8E3800385C63 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		35F546791B0F8F7B00385C63 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		35F546491B0F8C4100385C63 = {
 			isa = PBXGroup;
 			children = (
+				35F546791B0F8F7B00385C63 /* README.md */,
 				35F546541B0F8C4100385C63 /* There */,
 				35F5466A1B0F8C4100385C63 /* ThereTests */,
 				35F546531B0F8C4100385C63 /* Products */,
@@ -77,12 +80,12 @@
 		35F546541B0F8C4100385C63 /* There */ = {
 			isa = PBXGroup;
 			children = (
-				35F546571B0F8C4100385C63 /* AppDelegate.swift */,
-				35F546591B0F8C4100385C63 /* ViewController.swift */,
 				35F5465B1B0F8C4100385C63 /* Main.storyboard */,
 				35F5465E1B0F8C4100385C63 /* Images.xcassets */,
 				35F546601B0F8C4100385C63 /* LaunchScreen.xib */,
 				35F546551B0F8C4100385C63 /* Supporting Files */,
+				35F546571B0F8C4100385C63 /* AppDelegate.swift */,
+				35F546771B0F8E3800385C63 /* MapViewController.swift */,
 			);
 			path = There;
 			sourceTree = "<group>";
@@ -212,7 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35F5465A1B0F8C4100385C63 /* ViewController.swift in Sources */,
+				35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */,
+				35F5467A1B0F8F7B00385C63 /* README.md in Sources */,
 				35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = There/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -353,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = There/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
