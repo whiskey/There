@@ -1,0 +1,6 @@
+framework module Pods_ThereTests {
+  umbrella header "Pods-ThereTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

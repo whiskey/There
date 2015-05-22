@@ -1,0 +1,1 @@
+PODS_THERE_XCGLOGGER_OTHER_LDFLAGS = -framework "Foundation"
