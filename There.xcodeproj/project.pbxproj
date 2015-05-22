@@ -14,7 +14,9 @@
 		35F5466E1B0F8C4100385C63 /* ThereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5466D1B0F8C4100385C63 /* ThereTests.swift */; };
 		35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546771B0F8E3800385C63 /* MapViewController.swift */; };
 		35F5467A1B0F8F7B00385C63 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 35F546791B0F8F7B00385C63 /* README.md */; };
+		35F5467C1B0F9CA200385C63 /* TourDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5467B1B0F9CA200385C63 /* TourDetailsController.swift */; };
 		35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546801B0FA1C100385C63 /* LocalConfig.swift */; };
+		35F546831B0FA4FE00385C63 /* TourWaypointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546821B0FA4FE00385C63 /* TourWaypointCell.swift */; };
 		A500145FD2E861751FEC8D4A /* Pods_ThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADD8C6F914EBB5CE4C8B89E /* Pods_ThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D7455CDA467E96984F44BDEE /* Pods_There.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE458780C4C89C67D33E62C9 /* Pods_There.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -42,7 +44,9 @@
 		35F5466D1B0F8C4100385C63 /* ThereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThereTests.swift; sourceTree = "<group>"; };
 		35F546771B0F8E3800385C63 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		35F546791B0F8F7B00385C63 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		35F5467B1B0F9CA200385C63 /* TourDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourDetailsController.swift; sourceTree = "<group>"; };
 		35F546801B0FA1C100385C63 /* LocalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalConfig.swift; sourceTree = "<group>"; };
+		35F546821B0FA4FE00385C63 /* TourWaypointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourWaypointCell.swift; sourceTree = "<group>"; };
 		5ADD8C6F914EBB5CE4C8B89E /* Pods_ThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE458780C4C89C67D33E62C9 /* Pods_There.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_There.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7780559A1C96F56C54A4268 /* Pods-There.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-There.release.xcconfig"; path = "Pods/Target Support Files/Pods-There/Pods-There.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				35F546551B0F8C4100385C63 /* Supporting Files */,
 				35F546571B0F8C4100385C63 /* AppDelegate.swift */,
 				35F546771B0F8E3800385C63 /* MapViewController.swift */,
+				35F5467B1B0F9CA200385C63 /* TourDetailsController.swift */,
+				35F546821B0FA4FE00385C63 /* TourWaypointCell.swift */,
 			);
 			path = There;
 			sourceTree = "<group>";
@@ -367,6 +373,8 @@
 				35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */,
 				35F5467A1B0F8F7B00385C63 /* README.md in Sources */,
 				35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */,
+				35F5467C1B0F9CA200385C63 /* TourDetailsController.swift in Sources */,
+				35F546831B0FA4FE00385C63 /* TourWaypointCell.swift in Sources */,
 				35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
