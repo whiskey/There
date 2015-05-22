@@ -14,6 +14,7 @@
 		35F5466E1B0F8C4100385C63 /* ThereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5466D1B0F8C4100385C63 /* ThereTests.swift */; };
 		35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546771B0F8E3800385C63 /* MapViewController.swift */; };
 		35F5467A1B0F8F7B00385C63 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 35F546791B0F8F7B00385C63 /* README.md */; };
+		35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546801B0FA1C100385C63 /* LocalConfig.swift */; };
 		A500145FD2E861751FEC8D4A /* Pods_ThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADD8C6F914EBB5CE4C8B89E /* Pods_ThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D7455CDA467E96984F44BDEE /* Pods_There.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE458780C4C89C67D33E62C9 /* Pods_There.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -41,6 +42,7 @@
 		35F5466D1B0F8C4100385C63 /* ThereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThereTests.swift; sourceTree = "<group>"; };
 		35F546771B0F8E3800385C63 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		35F546791B0F8F7B00385C63 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		35F546801B0FA1C100385C63 /* LocalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalConfig.swift; sourceTree = "<group>"; };
 		5ADD8C6F914EBB5CE4C8B89E /* Pods_ThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE458780C4C89C67D33E62C9 /* Pods_There.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_There.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7780559A1C96F56C54A4268 /* Pods-There.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-There.release.xcconfig"; path = "Pods/Target Support Files/Pods-There/Pods-There.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		35F546541B0F8C4100385C63 /* There */ = {
 			isa = PBXGroup;
 			children = (
+				35F546801B0FA1C100385C63 /* LocalConfig.swift */,
 				35F5465B1B0F8C4100385C63 /* Main.storyboard */,
 				35F5465E1B0F8C4100385C63 /* Images.xcassets */,
 				35F546601B0F8C4100385C63 /* LaunchScreen.xib */,
@@ -154,6 +157,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35F546711B0F8C4100385C63 /* Build configuration list for PBXNativeTarget "There" */;
 			buildPhases = (
+				35F5467F1B0FA14100385C63 /* Check for LocalConfig file */,
 				D935B901F54E8279F7245CDB /* Check Pods Manifest.lock */,
 				35F5464E1B0F8C4100385C63 /* Sources */,
 				35F5464F1B0F8C4100385C63 /* Frameworks */,
@@ -249,6 +253,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		35F5467F1B0FA14100385C63 /* Check for LocalConfig file */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check for LocalConfig file";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ! -f $SOURCE_ROOT/$PROJECT_NAME/LocalConfig.swift ]; then\n  cp $SOURCE_ROOT/$PROJECT_NAME/LocalConfig.example.swift $SOURCE_ROOT/$PROJECT_NAME/LocalConfig.swift\nfi";
+		};
 		38A8262C11A2DEBCD762458A /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +366,7 @@
 			files = (
 				35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */,
 				35F5467A1B0F8F7B00385C63 /* README.md in Sources */,
+				35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */,
 				35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
