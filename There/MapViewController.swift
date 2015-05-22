@@ -9,28 +9,73 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
 
+    @IBOutlet weak var mapView: MKMapView!
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        //
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(animated: Bool) {
+        // TODO: ask nicely
+        switch CLLocationManager.authorizationStatus() {
+        case CLAuthorizationStatus.NotDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case CLAuthorizationStatus.Denied:
+            log.warning("user denied location lookup")
+            askForGPS()
+        default:
+            startLocationManager()
+        }
     }
-    */
+    
+    func askForGPS() {
+        let alertController = UIAlertController(
+            title: NSLocalizedString("nogpspermission.title", comment: ""),
+            message: NSLocalizedString("nogpspermission.message", comment: ""),
+            preferredStyle: UIAlertControllerStyle.Alert)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("label.cancel", comment: ""), style: .Cancel) { (action) in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+        
+        let settingsAction = UIAlertAction(title: NSLocalizedString("label.settings", comment: ""), style: .Default) { (action) in
+            if let url = NSURL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+        alertController.addAction(settingsAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
 
+    // MARK: - LocationManager/-delegate
+    
+    func startLocationManager() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            locationManager.startUpdatingLocation()
+            log.verbose("location manager up")
+            
+            mapView.showsUserLocation = true
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.AuthorizedAlways || status == CLAuthorizationStatus.AuthorizedWhenInUse {
+            startLocationManager()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        if let loc:CLLocation = locations.first as? CLLocation {
+            // later...
+        }
+    }
+    
 }
