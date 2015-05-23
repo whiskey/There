@@ -10,25 +10,25 @@ import UIKit
 import MapKit
 
 class GeoItem: NSObject {
-    let href:String
+    let id:String
     let coordinate: CLLocationCoordinate2D
     
-    var id:String?
+    var href:String?
     var title:String?
     var vicinity:String?
 
-    init(href:String, latitude lat:Double, longitude lng:Double) {
-        self.href = href
+    init(identifier id:String, latitude lat:Double, longitude lng:Double) {
+        self.id = id
         coordinate = CLLocationCoordinate2DMake(lat, lng)
     }
     
     init(dictionary dict:NSDictionary) {
         assert(dict["type"] as! String == "urn:nlp-types:place", "invalid data dictionary")
         
-        if let href = dict["href"] as? String {
-            self.href = href
+        if let id = dict["id"] as? String {
+            self.id = id
         } else { // TODO: handle this case
-            href = "undefined"
+            id = "undefined"
         }
         if let position = dict["position"] as? [Double] {
             coordinate = CLLocationCoordinate2DMake(position[0], position[1])
@@ -36,8 +36,8 @@ class GeoItem: NSObject {
             coordinate = CLLocationCoordinate2DMake(0, 0)
         }
         
-        if let id = dict["id"] as? String {
-            self.id = id
+        if let href = dict["href"] as? String {
+            self.href = href
         }
         if let title = dict["title"] as? String {
             self.title = title
@@ -45,5 +45,17 @@ class GeoItem: NSObject {
         if let vicinity = dict["vicinity"] as? String {
             self.vicinity = vicinity
         }
+    }
+    
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let object = object as? GeoItem {
+            return id == object.id
+        } else {
+            return false
+        }
+    }
+    
+    override var hash: Int {
+        return id.hashValue
     }
 }

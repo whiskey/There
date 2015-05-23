@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3579FFA81B10A74200EE05F5 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFA71B10A74200EE05F5 /* SearchResultCell.swift */; };
 		3579FFAA1B10BF4A00EE05F5 /* GeoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFA91B10BF4A00EE05F5 /* GeoItem.swift */; };
+		3579FFAC1B10E03500EE05F5 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFAB1B10E03500EE05F5 /* TourViewController.swift */; };
+		3579FFAF1B10E2B400EE05F5 /* GeoItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFAE1B10E2B400EE05F5 /* GeoItemAnnotation.swift */; };
+		3579FFB11B10E7FC00EE05F5 /* TourItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFB01B10E7FC00EE05F5 /* TourItemCell.swift */; };
 		35866E781B1054B0007E4D19 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35866E771B1054B0007E4D19 /* SearchResultsController.swift */; };
 		35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546571B0F8C4100385C63 /* AppDelegate.swift */; };
 		35F5465D1B0F8C4100385C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F5465B1B0F8C4100385C63 /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 		263AC9B877F5337A30AA61CC /* Pods-ThereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThereTests/Pods-ThereTests.release.xcconfig"; sourceTree = "<group>"; };
 		3579FFA71B10A74200EE05F5 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		3579FFA91B10BF4A00EE05F5 /* GeoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoItem.swift; sourceTree = "<group>"; };
+		3579FFAB1B10E03500EE05F5 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
+		3579FFAE1B10E2B400EE05F5 /* GeoItemAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoItemAnnotation.swift; sourceTree = "<group>"; };
+		3579FFB01B10E7FC00EE05F5 /* TourItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourItemCell.swift; sourceTree = "<group>"; };
 		35866E6D1B1044B9007E4D19 /* There-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "There-Bridging-Header.h"; sourceTree = "<group>"; };
 		35866E771B1054B0007E4D19 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		35F546521B0F8C4100385C63 /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +106,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3579FFAD1B10E15500EE05F5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				35866E771B1054B0007E4D19 /* SearchResultsController.swift */,
+				3579FFA71B10A74200EE05F5 /* SearchResultCell.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		35866E6C1B10429F007E4D19 /* HERE API */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,9 +156,11 @@
 				35F546551B0F8C4100385C63 /* Supporting Files */,
 				35F546571B0F8C4100385C63 /* AppDelegate.swift */,
 				35F546771B0F8E3800385C63 /* MapViewController.swift */,
-				35866E771B1054B0007E4D19 /* SearchResultsController.swift */,
-				3579FFA71B10A74200EE05F5 /* SearchResultCell.swift */,
+				3579FFAB1B10E03500EE05F5 /* TourViewController.swift */,
+				3579FFB01B10E7FC00EE05F5 /* TourItemCell.swift */,
+				3579FFAE1B10E2B400EE05F5 /* GeoItemAnnotation.swift */,
 				3579FFA91B10BF4A00EE05F5 /* GeoItem.swift */,
+				3579FFAD1B10E15500EE05F5 /* Search */,
 				35866E6C1B10429F007E4D19 /* HERE API */,
 			);
 			path = There;
@@ -388,8 +405,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3579FFB11B10E7FC00EE05F5 /* TourItemCell.swift in Sources */,
 				3579FFA81B10A74200EE05F5 /* SearchResultCell.swift in Sources */,
+				3579FFAC1B10E03500EE05F5 /* TourViewController.swift in Sources */,
 				35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */,
+				3579FFAF1B10E2B400EE05F5 /* GeoItemAnnotation.swift in Sources */,
 				3579FFAA1B10BF4A00EE05F5 /* GeoItem.swift in Sources */,
 				35F5467A1B0F8F7B00385C63 /* README.md in Sources */,
 				35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */,

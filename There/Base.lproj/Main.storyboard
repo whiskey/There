@@ -44,7 +44,13 @@
                             <constraint firstItem="vwk-Uf-sqs" firstAttribute="top" secondItem="TL4-u4-d5J" secondAttribute="top" id="whP-jv-u4E"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="wEw-PB-ua0"/>
+                    <navigationItem key="navigationItem" title="Map" id="wEw-PB-ua0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="TFt-q7-CW2">
+                            <connections>
+                                <segue destination="i3O-NR-l6N" kind="show" identifier="tour.details" id="HUH-0a-OPU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="vwk-Uf-sqs" id="yLa-Uk-KsN"/>
                     </connections>
@@ -52,6 +58,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2XQ-5S-5Jo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="438"/>
+        </scene>
+        <!--Tour-->
+        <scene sceneID="0tO-F9-cDv">
+            <objects>
+                <tableViewController id="i3O-NR-l6N" customClass="TourViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" id="gWh-jG-cJR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tourItem" textLabel="Kgm-DG-7xZ" detailTextLabel="PKa-uq-XLy" rowHeight="69" style="IBUITableViewCellStyleSubtitle" id="0gQ-HX-pmP" customClass="TourItemCell" customModule="There" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0gQ-HX-pmP" id="37R-3g-3no">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kgm-DG-7xZ">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PKa-uq-XLy">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="i3O-NR-l6N" id="ekT-Z4-5Me"/>
+                            <outlet property="delegate" destination="i3O-NR-l6N" id="Y0p-xA-spO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tour" id="hvq-9o-Sk0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="H3A-0F-Z6B"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxx-c3-bLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="438"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.2346659109" green="0.61736505679999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

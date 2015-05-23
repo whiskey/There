@@ -16,12 +16,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         return SearchResultsController(style: .Plain)
     }()
     
-    @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     let placeFetcher: STLPlaceFetcher = {
         STLPlaceFetcher.setAppID(LocalConfig.hereAppID(), appCode: LocalConfig.hereAppCode())
         return STLPlaceFetcher.sharedInstance()
     }()
+    
+    @IBOutlet weak var mapView: MKMapView!
+    var tourItems:[GeoItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         presentViewController(alertController, animated: true, completion: nil)
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "tour.details" {
+            let controller = segue.destinationViewController as! TourViewController
+            controller.tourItems = tourItems
+        }
+    }
+    
     // MARK: - Handle search results
     
     private func placeRequest() -> STLPlaceRequest {
@@ -104,11 +113,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         request.queryString = suggestion
         
         placeFetcher.searchPlacesWithQuery(placeRequest(), complete: { (items, error) -> Void in
-            log.debug("query: \(suggestion): \(count(items)) items")
-            var annotations:[MKPointAnnotation] = []
+            log.verbose("query: \(suggestion): \(count(items)) items")
+            // cleanup
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            // add new annotation - if any
+            var annotations:[GeoItemAnnotation] = []
             for i in items {
                 if let item = i as? GeoItem {
-                    let a = MKPointAnnotation()
+                    let a = GeoItemAnnotation(geoItem: item)
                     a.title = item.title
                     a.coordinate = item.coordinate
                     annotations.append(a)
@@ -121,15 +134,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     // MARK: - MapView
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        if annotation.isKindOfClass(MKPointAnnotation) {
-            let identifier = "id"
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView
+        if annotation.isKindOfClass(GeoItemAnnotation) {
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(GeoItemAnnotation.identifier())
             if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView!.animatesDrop = true
-                annotationView!.enabled = true
-                annotationView!.canShowCallout = true
-                annotationView!.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIView
+                if let ann = annotation as? GeoItemAnnotation {
+                    annotationView = ann.annotationView()
+                }
             } else {
                 annotationView!.annotation = annotation
             }
@@ -140,7 +150,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        //
+        if let annotation = view.annotation as? GeoItemAnnotation {
+            let item = annotation.geoItem
+            if let index = find(tourItems, item) {
+                // put the selected item at first index
+                tourItems.removeAtIndex(index)
+                tourItems.insert(item, atIndex: 0)
+            } else {
+                tourItems.append(item)
+            }
+            mapView.deselectAnnotation(annotation, animated: true)
+        }
     }
     
     // MARK: - LocationManager/-delegate
