@@ -44,13 +44,7 @@
                             <constraint firstItem="vwk-Uf-sqs" firstAttribute="top" secondItem="TL4-u4-d5J" secondAttribute="top" id="whP-jv-u4E"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="wEw-PB-ua0">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="compose" id="DOp-sN-39v">
-                            <connections>
-                                <segue destination="TC7-By-ARb" kind="show" identifier="tour.details" id="1Hk-LX-G64"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Map" id="wEw-PB-ua0"/>
                     <connections>
                         <outlet property="mapView" destination="vwk-Uf-sqs" id="yLa-Uk-KsN"/>
                     </connections>
@@ -58,36 +52,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2XQ-5S-5Jo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="438"/>
-        </scene>
-        <!--Tour Details-->
-        <scene sceneID="VF6-1q-J8X">
-            <objects>
-                <tableViewController id="TC7-By-ARb" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="8QF-Kf-yHz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell.poi" id="ypD-fI-F8f" customClass="TourWaypointCell" customModule="There" customModuleProvider="target">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ypD-fI-F8f" id="9Eg-Ws-4ch">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="TC7-By-ARb" id="WQM-bc-uko"/>
-                            <outlet property="delegate" destination="TC7-By-ARb" id="Z5z-Sg-rXD"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Tour Details" id="XNx-Eh-h6N">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ax9-3A-oXd"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nYa-GS-fHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1440" y="438"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.2346659109" green="0.61736505679999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

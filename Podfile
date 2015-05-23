@@ -5,7 +5,10 @@ use_frameworks!
 
 target 'There' do
 pod 'XCGLogger', '~> 2.0'
-#pod 'Alamofire', '~> 1.2'
+
+## Objective-C
+pod "AFNetworking", '~> 2.0'
+
 end
 
 target 'ThereTests' do

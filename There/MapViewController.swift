@@ -9,19 +9,27 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
-    // Xcode/IB still struggle with the new UISearchController - let's do it manually
+class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, SearchDelegate {
+    // Xcode/IB still struggles with the new UISearchController - let's do it manually
     var searchController:UISearchController!
+    let resultsController:SearchResultsController = {
+        return SearchResultsController(style: .Plain)
+    }()
     
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
+    let placeFetcher: STLPlaceFetcher = {
+        STLPlaceFetcher.setAppID(LocalConfig.hereAppID(), appCode: LocalConfig.hereAppCode())
+        return STLPlaceFetcher.sharedInstance()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // setup search controller
-        let src = SearchResultsController(style: .Plain) // currently
-        searchController = UISearchController(searchResultsController: src)
+        resultsController.searchDelegate = self
+        searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
         searchController.searchBar.placeholder = NSLocalizedString("searchbar.placeholder", comment: "")
@@ -30,7 +38,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        // TODO: ask nicely
+        // TODO: ask nicely, e.g. via app tour
         switch CLLocationManager.authorizationStatus() {
         case CLAuthorizationStatus.NotDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -62,6 +70,42 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
 
+    // MARK: - Handle search results
+    
+    private func placeRequest() -> STLPlaceRequest {
+        let request = STLPlaceRequest()
+        if locationManager.location != nil {
+            request.location = locationManager.location
+        }
+        request.mapRect = mapView.visibleMapRect
+        request.queryString = searchController.searchBar.text
+        return request
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        placeFetcher.searchSuggestionsForQuery(placeRequest(), complete: { (items, error) -> Void in
+            if let items = items as? [String] {
+                self.resultsController.resultItems = items
+                self.resultsController.tableView.reloadData()
+            }
+            if error != nil {
+                log.error("\(error.debugDescription)")
+            }
+        })
+    }
+    
+    func didSelectSearchSuggestion(suggestion: String) {
+        searchController.active = false
+        searchController.searchBar.text = suggestion
+        
+        let request = placeRequest()
+        request.queryString = suggestion
+        
+        placeFetcher.searchPlacesWithQuery(placeRequest(), complete: { (items, error) -> Void in
+            log.debug("query: \(suggestion):\n\(items)")
+        })
+    }
+    
     // MARK: - LocationManager/-delegate
     
     func startLocationManager() {
@@ -69,7 +113,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
             locationManager.startUpdatingLocation()
-            log.verbose("location manager up")
             
             mapView.showsUserLocation = true
         }
