@@ -7,8 +7,12 @@
 //
 
 #import "STLPlaceFetcher.h"
+#import "There-Swift.h"
 
 @implementation STLPlaceRequest
+- (NSString *)queryString {
+    return [_queryString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+}
 @end
 
 #if DEBUG
@@ -67,7 +71,6 @@ static BOOL isProductionEnvironment = YES;
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                   @"q": request.queryString,
-                                                                                  @"size": @20,
                                                                                   @"tf": @"plain",
                                                                                   }];
     NSString *at = [[self geoURIForLocation:request.location] stringByReplacingOccurrencesOfString:@"geo:" withString:@""];
@@ -91,14 +94,18 @@ static BOOL isProductionEnvironment = YES;
     
     NSDictionary *params = @{
                              @"q": request.queryString,
-                             @"size": @40,
                              @"tf": @"plain",
                              };
     // I would prefer /suggestions
     [self GET:@"places/v1/discover/search" parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           if (completionBlock != nil) {
-              completionBlock([responseObject valueForKeyPath:@"results.items"], nil);
+              NSMutableArray *items = [NSMutableArray array];
+              for (NSDictionary *dict in [responseObject valueForKeyPath:@"results.items"]) {
+                  GeoItem *item = [[GeoItem alloc] initWithDictionary:dict];
+                  [items addObject:item];
+              }
+              completionBlock([NSArray arrayWithArray:items], nil);
           }
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
           NSLog(@"%@", operation.responseObject);

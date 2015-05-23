@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, SearchDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, SearchDelegate, MKMapViewDelegate {
     // Xcode/IB still struggles with the new UISearchController - let's do it manually
     var searchController:UISearchController!
     let resultsController:SearchResultsController = {
@@ -25,6 +25,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
 
         // setup search controller
         resultsController.searchDelegate = self
@@ -102,8 +104,43 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         request.queryString = suggestion
         
         placeFetcher.searchPlacesWithQuery(placeRequest(), complete: { (items, error) -> Void in
-            log.debug("query: \(suggestion):\n\(items)")
+            log.debug("query: \(suggestion): \(count(items)) items")
+            var annotations:[MKPointAnnotation] = []
+            for i in items {
+                if let item = i as? GeoItem {
+                    let a = MKPointAnnotation()
+                    a.title = item.title
+                    a.coordinate = item.coordinate
+                    annotations.append(a)
+                }
+            }
+            self.mapView.addAnnotations(annotations)
         })
+    }
+    
+    // MARK: - MapView
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if annotation.isKindOfClass(MKPointAnnotation) {
+            let identifier = "id"
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView
+            if annotationView == nil {
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView!.animatesDrop = true
+                annotationView!.enabled = true
+                annotationView!.canShowCallout = true
+                annotationView!.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIView
+            } else {
+                annotationView!.annotation = annotation
+            }
+            return annotationView
+        } else {
+            return nil
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        //
     }
     
     // MARK: - LocationManager/-delegate
@@ -123,11 +160,4 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
             startLocationManager()
         }
     }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        if let loc:CLLocation = locations.first as? CLLocation {
-            // later...
-        }
-    }
-    
 }
