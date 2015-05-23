@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35866E781B1054B0007E4D19 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35866E771B1054B0007E4D19 /* SearchResultsController.swift */; };
 		35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546571B0F8C4100385C63 /* AppDelegate.swift */; };
 		35F5465D1B0F8C4100385C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F5465B1B0F8C4100385C63 /* Main.storyboard */; };
 		35F5465F1B0F8C4100385C63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F5465E1B0F8C4100385C63 /* Images.xcassets */; };
@@ -33,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		263AC9B877F5337A30AA61CC /* Pods-ThereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThereTests/Pods-ThereTests.release.xcconfig"; sourceTree = "<group>"; };
+		35866E6D1B1044B9007E4D19 /* There-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "There-Bridging-Header.h"; sourceTree = "<group>"; };
+		35866E771B1054B0007E4D19 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		35F546521B0F8C4100385C63 /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F546561B0F8C4100385C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35F546571B0F8C4100385C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +97,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		35866E6C1B10429F007E4D19 /* API handling */ = {
+			isa = PBXGroup;
+			children = (
+				35866E6D1B1044B9007E4D19 /* There-Bridging-Header.h */,
+			);
+			name = "API handling";
+			sourceTree = "<group>";
+		};
 		35F546491B0F8C4100385C63 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +138,8 @@
 				35F546771B0F8E3800385C63 /* MapViewController.swift */,
 				35F5467B1B0F9CA200385C63 /* TourDetailsController.swift */,
 				35F546821B0FA4FE00385C63 /* TourWaypointCell.swift */,
+				35866E771B1054B0007E4D19 /* SearchResultsController.swift */,
+				35866E6C1B10429F007E4D19 /* API handling */,
 			);
 			path = There;
 			sourceTree = "<group>";
@@ -374,6 +387,7 @@
 				35F5467A1B0F8F7B00385C63 /* README.md in Sources */,
 				35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */,
 				35F5467C1B0F9CA200385C63 /* TourDetailsController.swift in Sources */,
+				35866E781B1054B0007E4D19 /* SearchResultsController.swift in Sources */,
 				35F546831B0FA4FE00385C63 /* TourWaypointCell.swift in Sources */,
 				35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */,
 			);
@@ -505,10 +519,13 @@
 			baseConfigurationReference = EA4B43EFAEA2484230AECAFB /* Pods-There.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = There/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "There/There-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -517,10 +534,12 @@
 			baseConfigurationReference = D7780559A1C96F56C54A4268 /* Pods-There.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = There/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "There/There-Bridging-Header.h";
 			};
 			name = Release;
 		};

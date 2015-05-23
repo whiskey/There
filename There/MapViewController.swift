@@ -10,14 +10,23 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
-
+    // Xcode/IB still struggle with the new UISearchController - let's do it manually
+    var searchController:UISearchController!
+    
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //
+        // setup search controller
+        let src = SearchResultsController(style: .Plain) // currently
+        searchController = UISearchController(searchResultsController: src)
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
+        searchController.searchBar.placeholder = NSLocalizedString("searchbar.placeholder", comment: "")
+        navigationItem.titleView = searchController.searchBar
+        definesPresentationContext = true
     }
     
     override func viewDidAppear(animated: Bool) {

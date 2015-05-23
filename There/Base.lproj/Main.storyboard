@@ -35,13 +35,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vwk-Uf-sqs">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="free search" translatesAutoresizingMaskIntoConstraints="NO" id="eUX-f1-5dl">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="VCP-Na-C9n" id="QVj-oR-qYQ"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -52,7 +45,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="wEw-PB-ua0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="DOp-sN-39v">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="compose" id="DOp-sN-39v">
                             <connections>
                                 <segue destination="TC7-By-ARb" kind="show" identifier="tour.details" id="1Hk-LX-G64"/>
                             </connections>
@@ -60,19 +53,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="vwk-Uf-sqs" id="yLa-Uk-KsN"/>
-                        <outlet property="searchDisplayController" destination="WAc-K1-lKJ" id="S5c-89-sUg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2XQ-5S-5Jo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="WAc-K1-lKJ">
-                    <connections>
-                        <outlet property="delegate" destination="VCP-Na-C9n" id="KPj-1p-a4A"/>
-                        <outlet property="searchBar" destination="eUX-f1-5dl" id="AfZ-4Q-Ahv"/>
-                        <outlet property="searchContentsController" destination="VCP-Na-C9n" id="lJr-xp-AoZ"/>
-                        <outlet property="searchResultsDataSource" destination="VCP-Na-C9n" id="zPd-Fb-9aX"/>
-                        <outlet property="searchResultsDelegate" destination="VCP-Na-C9n" id="ajH-Os-JsZ"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="620" y="438"/>
         </scene>
@@ -83,7 +66,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="8QF-Kf-yHz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell.poi" id="ypD-fI-F8f" customClass="TourWaypointCell" customModule="There" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
