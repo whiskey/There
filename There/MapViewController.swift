@@ -23,7 +23,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     }()
     
     @IBOutlet weak var mapView: MKMapView!
-    var tourItems:[GeoItem] = []
+    let model:TourModel = TourModel.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +77,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "tour.details" {
             let controller = segue.destinationViewController as! TourViewController
-            controller.tourItems = tourItems
+            controller.tourItems = model.tourItems
         }
     }
     
@@ -152,13 +152,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         if let annotation = view.annotation as? GeoItemAnnotation {
             let item = annotation.geoItem
-            if let index = find(tourItems, item) {
-                // put the selected item at first index
-                tourItems.removeAtIndex(index)
-                tourItems.insert(item, atIndex: 0)
-            } else {
-                tourItems.append(item)
-            }
+            model.addGeoItem(item)
             mapView.deselectAnnotation(annotation, animated: true)
         }
     }
