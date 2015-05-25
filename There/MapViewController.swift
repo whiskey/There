@@ -77,7 +77,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "tour.details" {
             let controller = segue.destinationViewController as! TourViewController
-            controller.tourItems = model.tourItems
+            controller.model = model
+            // might be later a Core Data MOC
+            // alternative design would be a TourViewDelegate implemented here to pass changes
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 
 class TourViewController: UITableViewController {
 
-    var tourItems:[GeoItem]!
+    var model:TourModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +25,12 @@ class TourViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return count(tourItems)
+        return count(model.tourItems)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tourItem", forIndexPath: indexPath) as! TourItemCell
-        let item = tourItems[indexPath.row]
+        let item = model.tourItems[indexPath.row]
         
         cell.textLabel?.text = item.title
         cell.detailTextLabel?.text = item.vicinity
@@ -47,12 +47,12 @@ class TourViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        //
+        model.moveItem(from: sourceIndexPath, to: destinationIndexPath)
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            model.removeItem(at: indexPath)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

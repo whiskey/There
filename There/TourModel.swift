@@ -12,7 +12,8 @@ protocol TourModelProtocol {
     var tourItems:[GeoItem] { get set }
     
     func addGeoItem(item: GeoItem)
-    func move(sourceIndexPath: NSIndexPath, destinationIndexPath: NSIndexPath)
+    func moveItem(from sourceIndexPath: NSIndexPath, to destinationIndexPath: NSIndexPath)
+    func removeItem(at indexPath: NSIndexPath)
 }
 
 
@@ -32,12 +33,16 @@ class TourModel: TourModelProtocol {
         }
     }
     
-    func move(sourceIndexPath: NSIndexPath, destinationIndexPath: NSIndexPath) {
+    func moveItem(from sourceIndexPath: NSIndexPath, to destinationIndexPath: NSIndexPath) {
         if sourceIndexPath.row < count(tourItems) && destinationIndexPath.row < count(tourItems) {
             let item = tourItems.removeAtIndex(sourceIndexPath.row)
             tourItems.insert(item, atIndex: destinationIndexPath.row)
-        } else {
-            log.debug("oops")
+        }
+    }
+    
+    func removeItem(at indexPath: NSIndexPath) {
+        if indexPath.row < count(tourItems) {
+            tourItems.removeAtIndex(indexPath.row)
         }
     }
 }
