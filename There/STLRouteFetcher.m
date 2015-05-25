@@ -8,7 +8,23 @@
 
 #import "STLRouteFetcher.h"
 
+@implementation STLRouteRequest
+@end
+
+
 @implementation STLRouteFetcher
+
+- (instancetype)init {
+#if DEBUG
+    NSURL *baseURL = [NSURL URLWithString:@"http://route.cit.api.here.com"];
+#else
+#warning using Demo API instead of Production (http://route.api.here.com)
+    NSURL *baseURL = [NSURL URLWithString:@"http://route.cit.api.here.com"];
+#endif
+    return [super initWithBaseURL:baseURL];
+}
+
+#pragma mark - STLRouteRequestProtocol
 
 - (void)routeWithRequest:(STLRouteRequest *)request complete:(void (^)(NSArray *, NSError *))completionBlock {
     NSUInteger wpCount = request.waypoints.count;
@@ -25,7 +41,7 @@
     // additional parameters
     [params addEntriesFromDictionary:request.parameters];
     
-    [self.api GET:@"routing/7.2/calculateroute.json"
+    [self GET:@"routing/7.2/calculateroute.json"
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               if (completionBlock) {

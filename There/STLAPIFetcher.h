@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 staticline. All rights reserved.
 //
 
+@import Foundation;
 @import MapKit;
-#import <Foundation/Foundation.h>
-#import "STLAPIHandler.h"
+#import <AFNetworking/AFNetworking.h>
 
 
-@interface STLAbstractFetcher : NSObject
-@property (strong, nonatomic, readonly) STLAPIHandler *api;
+@interface STLAPIFetcher : AFHTTPRequestOperationManager
+
 @end

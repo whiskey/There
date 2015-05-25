@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 staticline. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "STLAbstractFetcher.h"
+@import MapKit;
+@import Foundation;
+#import "STLAPIFetcher.h"
 
 
 @interface STLRouteRequest : NSObject
@@ -23,5 +24,6 @@
 @end
 
 
-@interface STLRouteFetcher : STLAbstractFetcher <STLRouteRequestProtocol>
+@interface STLRouteFetcher : STLAPIFetcher <STLRouteRequestProtocol>
+- (instancetype)init;
 @end

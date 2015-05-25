@@ -9,7 +9,8 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, SearchDelegate, MKMapViewDelegate {
+// a little too many protocols up here...
+class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, SearchDelegate, MKMapViewDelegate, TourModelDelegate {
     // Xcode/IB still struggles with the new UISearchController - let's do it manually
     var searchController:UISearchController!
     let resultsController:SearchResultsController = {
@@ -27,7 +28,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         super.viewDidLoad()
         
         mapView.delegate = self
-
+        model.delegate = self
+        
         // setup search controller
         resultsController.searchDelegate = self
         searchController = UISearchController(searchResultsController: resultsController)
@@ -173,5 +175,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         if status == CLAuthorizationStatus.AuthorizedAlways || status == CLAuthorizationStatus.AuthorizedWhenInUse {
             startLocationManager()
         }
+    }
+    
+    // MARK: - TourModelDelegate
+    
+    func didUpdateTour() {
+        if count(model.waypoints()) == 0 {
+            return // do nothing
+        }
+        
+        let request = STLRouteRequest()
+        request.waypoints = model.waypoints()
+        request.parameters = [ // static for the moment
+            "representation":"turnByTurn",
+            "mode":"car",
+        ]
+        
+        routeFetcher.routeWithRequest(request, complete: { (navpoints, error) -> Void in
+            if let nps = navpoints as? [CLLocation] {
+                log.debug("got \(count(nps)) navpoints")
+            } else {
+                log.debug("\(navpoints)")
+            }
+        })
     }
 }

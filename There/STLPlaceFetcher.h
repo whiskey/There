@@ -7,7 +7,7 @@
 //
 
 @import Foundation;
-#import "STLAbstractFetcher.h"
+#import "STLAPIFetcher.h"
 
 /**
  Stores request-related data like an NSURL- or NSFetchRequest
@@ -37,5 +37,6 @@
 @end
 
 
-@interface STLPlaceFetcher : STLAbstractFetcher <STLPlaceRequestProtocol>
+@interface STLPlaceFetcher : STLAPIFetcher <STLPlaceRequestProtocol>
+- (instancetype)init;
 @end

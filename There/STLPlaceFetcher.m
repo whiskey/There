@@ -9,6 +9,7 @@
 #import "STLPlaceFetcher.h"
 #import "There-Swift.h"
 
+
 @implementation STLPlaceRequest
 - (NSString *)queryString {
     return [_queryString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -17,6 +18,16 @@
 
 
 @implementation STLPlaceFetcher
+
+- (instancetype)init {
+#if DEBUG
+    NSURL *baseURL = [NSURL URLWithString:@"https://places.cit.api.here.com"];
+#else
+#warning using Demo API instead of Production (http://places.api.here.com)
+    NSURL *baseURL = [NSURL URLWithString:@"https://places.cit.api.here.com"];
+#endif
+    return [super initWithBaseURL:baseURL];
+}
 
 #pragma mark - STLPlaceRequestProtocol
 
@@ -30,7 +41,7 @@
     NSString *at = [[self geoURIForLocation:request.location] stringByReplacingOccurrencesOfString:@"geo:" withString:@""];
     [params setObject:at forKey:@"at"];
     
-    [self.api GET:@"places/v1/suggest" parameters:params
+    [self GET:@"places/v1/suggest" parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           if (completionBlock != nil) {
               completionBlock([responseObject valueForKey:@"suggestions"], nil);
@@ -51,7 +62,7 @@
                              @"tf": @"plain",
                              };
     // I would prefer /suggestions
-    [self.api GET:@"places/v1/discover/search" parameters:params
+    [self GET:@"places/v1/discover/search" parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           if (completionBlock != nil) {
               NSMutableArray *items = [NSMutableArray array];
@@ -81,11 +92,11 @@
     NSString *regionString = [NSString stringWithFormat:@"%f,%f,%f,%f",
                               swCoord.latitude, swCoord.longitude,
                               neCoord.latitude, neCoord.longitude];
-    [self.api.requestSerializer setValue:regionString forHTTPHeaderField:@"X-Map-Viewport"];
+    [self.requestSerializer setValue:regionString forHTTPHeaderField:@"X-Map-Viewport"];
     
     // explicit location
     NSString *uri = [self geoURIForLocation:request.location];
-    [self.api.requestSerializer setValue:uri forHTTPHeaderField:@"Geolocation"];
+    [self.requestSerializer setValue:uri forHTTPHeaderField:@"Geolocation"];
 }
 
 - (NSString *)geoURIForLocation:(CLLocation *)location {
