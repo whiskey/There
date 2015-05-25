@@ -7,10 +7,13 @@
 //
 
 #import "STLRouteFetcher.h"
+#import "There-Swift.h"
 
 @implementation STLRouteRequest
 @end
 
+@implementation STLNavPoint
+@end
 
 @implementation STLRouteFetcher
 
@@ -21,7 +24,22 @@
 #warning using Demo API instead of Production (http://route.api.here.com)
     NSURL *baseURL = [NSURL URLWithString:@"http://route.cit.api.here.com"];
 #endif
-    return [super initWithBaseURL:baseURL];
+    self = [super initWithBaseURL:baseURL];
+    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError *__autoreleasing *error) {
+        NSURLComponents *components = [NSURLComponents componentsWithURL:request.URL resolvingAgainstBaseURL:NO];
+        NSMutableArray *queryItems = [NSMutableArray array];
+        // no auth header here... m(
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"app_id" value:[LocalConfig hereAppID]]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"app_code" value:[LocalConfig hereAppCode]]];
+        
+        for (NSString *key in [parameters allKeys]) {
+            NSURLQueryItem *item = [NSURLQueryItem queryItemWithName:key value:parameters[key]];
+            [queryItems addObject:item];
+        }
+        [components setQueryItems:queryItems];
+        return components.URL.absoluteString;
+    }];
+    return self;
 }
 
 #pragma mark - STLRouteRequestProtocol
@@ -45,7 +63,18 @@
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               if (completionBlock) {
-                  NSArray *navPoints = @[];
+                  NSMutableArray *navPoints = [NSMutableArray array];
+                  for (NSDictionary *route in [responseObject valueForKeyPath:@"response.route"]) {
+                      for (NSDictionary *leg in [route valueForKey:@"leg"]) {
+                          for (NSDictionary *position in [leg valueForKeyPath:@"maneuver.position"]) {
+                              STLNavPoint *nav = [STLNavPoint new];
+                              CLLocationDegrees lat = [position[@"latitude"] doubleValue];
+                              CLLocationDegrees lng = [position[@"longitude"] doubleValue];
+                              nav.location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+                              [navPoints addObject:nav];
+                          }
+                      }
+                  }
                   completionBlock(navPoints, nil);
               }
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

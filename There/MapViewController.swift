@@ -180,22 +180,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     // MARK: - TourModelDelegate
     
     func didUpdateTour() {
-        if count(model.waypoints()) == 0 {
-            return // do nothing
+        let request = STLRouteRequest()
+        var waypoints = model.waypoints()
+        // user location is wp0
+        if locationManager.location != nil {
+            waypoints.insert(locationManager.location, atIndex: 0)
+        }
+        request.waypoints = waypoints
+        
+        if count(waypoints) < 2 {
+            // we need two waypoints - skip this
+            return
         }
         
-        let request = STLRouteRequest()
-        request.waypoints = model.waypoints()
         request.parameters = [ // static for the moment
-            "representation":"turnByTurn",
-            "mode":"car",
+            "representation":"display",
+            "mode":"fastest;car;traffic:disabled",
         ]
         
         routeFetcher.routeWithRequest(request, complete: { (navpoints, error) -> Void in
             if let nps = navpoints as? [CLLocation] {
                 log.debug("got \(count(nps)) navpoints")
-            } else {
-                log.debug("\(navpoints)")
+            }
+            if error != nil {
+                log.error("\(error)")
             }
         })
     }

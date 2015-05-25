@@ -17,6 +17,10 @@
 @property (strong, nonatomic) NSDictionary *parameters;
 @end
 
+@interface STLNavPoint : NSObject
+@property (strong, nonatomic) CLLocation *location;
+@end
+
 
 @protocol STLRouteRequestProtocol <NSObject>
 /// HERE's: calculateroute resource
