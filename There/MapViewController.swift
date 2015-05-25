@@ -22,7 +22,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     let routeFetcher = STLRouteFetcher()
     
     @IBOutlet weak var mapView: MKMapView!
+    var polyline:MKPolyline?
     let model:TourModel = TourModel.sharedInstance
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,6 +161,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         }
     }
     
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = view.tintColor.colorWithAlphaComponent(0.7)
+            polylineRenderer.lineWidth = 3
+            return polylineRenderer
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: - LocationManager/-delegate
     
     func startLocationManager() {
@@ -199,8 +212,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
         ]
         
         routeFetcher.routeWithRequest(request, complete: { (navpoints, error) -> Void in
-            if let nps = navpoints as? [CLLocation] {
+            if let nps = navpoints as? [STLNavPoint] {
                 log.debug("got \(count(nps)) navpoints")
+                
+                // cleanup
+                if self.polyline != nil {
+                    self.mapView.removeOverlay(self.polyline)
+                }
+                
+                var coordinates = [CLLocationCoordinate2D]()
+                for navpoint in nps {
+                    coordinates.append(navpoint.location.coordinate)
+                }
+                
+                self.polyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
+                // TODO: check for memory leaks due to 'coordinates'
+                self.mapView.addOverlay(self.polyline)
             }
             if error != nil {
                 log.error("\(error)")
