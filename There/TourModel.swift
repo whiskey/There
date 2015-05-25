@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 protocol TourModelProtocol {
     var tourItems:[GeoItem] { get set }
@@ -14,6 +15,8 @@ protocol TourModelProtocol {
     func addGeoItem(item: GeoItem)
     func moveItem(from sourceIndexPath: NSIndexPath, to destinationIndexPath: NSIndexPath)
     func removeItem(at indexPath: NSIndexPath)
+    
+    func waypoints() -> [CLLocation]
 }
 
 
@@ -22,6 +25,8 @@ class TourModel: TourModelProtocol {
     static let sharedInstance = TourModel()
     
     var tourItems:[GeoItem] = []
+    
+    // MARK: - CR(U)D operations
     
     func addGeoItem(item:GeoItem) {
         if let index = find(tourItems, item) {
@@ -43,6 +48,15 @@ class TourModel: TourModelProtocol {
     func removeItem(at indexPath: NSIndexPath) {
         if indexPath.row < count(tourItems) {
             tourItems.removeAtIndex(indexPath.row)
+        }
+    }
+    
+    // MARK: - 
+    
+    func waypoints() -> [CLLocation] {
+        return tourItems.map {
+            let c = $0.coordinate
+            return  CLLocation(latitude: c.latitude, longitude: c.longitude)
         }
     }
 }

@@ -23,6 +23,9 @@
 		35F5467A1B0F8F7B00385C63 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 35F546791B0F8F7B00385C63 /* README.md */; };
 		35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F546801B0FA1C100385C63 /* LocalConfig.swift */; };
 		35F578AB1B10696A000518B4 /* STLPlaceFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F578AA1B10696A000518B4 /* STLPlaceFetcher.m */; };
+		35F7D3DF1B1312C4001B981B /* STLRouteFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F7D3DE1B1312C4001B981B /* STLRouteFetcher.m */; };
+		35F7D3E21B131332001B981B /* STLAPIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F7D3E11B131332001B981B /* STLAPIHandler.m */; };
+		35F7D3E51B1319F5001B981B /* STLAbstractFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F7D3E41B1319F5001B981B /* STLAbstractFetcher.m */; };
 		A500145FD2E861751FEC8D4A /* Pods_ThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADD8C6F914EBB5CE4C8B89E /* Pods_ThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D7455CDA467E96984F44BDEE /* Pods_There.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE458780C4C89C67D33E62C9 /* Pods_There.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -61,6 +64,12 @@
 		35F546801B0FA1C100385C63 /* LocalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalConfig.swift; sourceTree = "<group>"; };
 		35F578A91B10696A000518B4 /* STLPlaceFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLPlaceFetcher.h; sourceTree = "<group>"; };
 		35F578AA1B10696A000518B4 /* STLPlaceFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLPlaceFetcher.m; sourceTree = "<group>"; };
+		35F7D3DD1B1312C4001B981B /* STLRouteFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLRouteFetcher.h; sourceTree = "<group>"; };
+		35F7D3DE1B1312C4001B981B /* STLRouteFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLRouteFetcher.m; sourceTree = "<group>"; };
+		35F7D3E01B131332001B981B /* STLAPIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLAPIHandler.h; sourceTree = "<group>"; };
+		35F7D3E11B131332001B981B /* STLAPIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLAPIHandler.m; sourceTree = "<group>"; };
+		35F7D3E31B1319F5001B981B /* STLAbstractFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLAbstractFetcher.h; sourceTree = "<group>"; };
+		35F7D3E41B1319F5001B981B /* STLAbstractFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLAbstractFetcher.m; sourceTree = "<group>"; };
 		5ADD8C6F914EBB5CE4C8B89E /* Pods_ThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE458780C4C89C67D33E62C9 /* Pods_There.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_There.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7780559A1C96F56C54A4268 /* Pods-There.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-There.release.xcconfig"; path = "Pods/Target Support Files/Pods-There/Pods-There.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,8 +130,14 @@
 			isa = PBXGroup;
 			children = (
 				35866E6D1B1044B9007E4D19 /* There-Bridging-Header.h */,
+				35F7D3E31B1319F5001B981B /* STLAbstractFetcher.h */,
+				35F7D3E41B1319F5001B981B /* STLAbstractFetcher.m */,
 				35F578A91B10696A000518B4 /* STLPlaceFetcher.h */,
 				35F578AA1B10696A000518B4 /* STLPlaceFetcher.m */,
+				35F7D3DD1B1312C4001B981B /* STLRouteFetcher.h */,
+				35F7D3DE1B1312C4001B981B /* STLRouteFetcher.m */,
+				35F7D3E01B131332001B981B /* STLAPIHandler.h */,
+				35F7D3E11B131332001B981B /* STLAPIHandler.m */,
 			);
 			name = "HERE API";
 			sourceTree = "<group>";
@@ -411,14 +426,17 @@
 				3579FFB11B10E7FC00EE05F5 /* TourItemCell.swift in Sources */,
 				3579FFB31B110A7A00EE05F5 /* TourModel.swift in Sources */,
 				3579FFA81B10A74200EE05F5 /* SearchResultCell.swift in Sources */,
+				35F7D3E21B131332001B981B /* STLAPIHandler.m in Sources */,
 				3579FFAC1B10E03500EE05F5 /* TourViewController.swift in Sources */,
 				35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */,
 				3579FFAF1B10E2B400EE05F5 /* GeoItemAnnotation.swift in Sources */,
 				3579FFAA1B10BF4A00EE05F5 /* GeoItem.swift in Sources */,
 				35F5467A1B0F8F7B00385C63 /* README.md in Sources */,
 				35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */,
+				35F7D3E51B1319F5001B981B /* STLAbstractFetcher.m in Sources */,
 				35866E781B1054B0007E4D19 /* SearchResultsController.swift in Sources */,
 				35F578AB1B10696A000518B4 /* STLPlaceFetcher.m in Sources */,
+				35F7D3DF1B1312C4001B981B /* STLRouteFetcher.m in Sources */,
 				35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

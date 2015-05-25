@@ -17,10 +17,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     }()
     
     let locationManager = CLLocationManager()
-    let placeFetcher: STLPlaceFetcher = {
-        STLPlaceFetcher.setAppID(LocalConfig.hereAppID(), appCode: LocalConfig.hereAppCode())
-        return STLPlaceFetcher.sharedInstance()
-    }()
+    let placeFetcher = STLPlaceFetcher()
+    let routeFetcher = STLRouteFetcher()
     
     @IBOutlet weak var mapView: MKMapView!
     let model:TourModel = TourModel.sharedInstance

@@ -7,8 +7,7 @@
 //
 
 @import Foundation;
-@import MapKit;
-#import <AFNetworking/AFNetworking.h>
+#import "STLAbstractFetcher.h"
 
 /**
  Stores request-related data like an NSURL- or NSFetchRequest
@@ -37,9 +36,6 @@
 - (void)searchPlacesWithQuery:(STLPlaceRequest*)request complete:(void (^)(NSArray *items, NSError *error))completionBlock;
 @end
 
-@interface STLPlaceFetcher : AFHTTPRequestOperationManager <STLPlaceRequestProtocol>
 
-+ (void)setAppID:(NSString *)appID appCode:(NSString *)appCode;
-+ (instancetype)sharedInstance;
-
+@interface STLPlaceFetcher : STLAbstractFetcher <STLPlaceRequestProtocol>
 @end
