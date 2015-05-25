@@ -44,7 +44,7 @@
                             <constraint firstItem="vwk-Uf-sqs" firstAttribute="top" secondItem="TL4-u4-d5J" secondAttribute="top" id="whP-jv-u4E"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="wEw-PB-ua0">
+                    <navigationItem key="navigationItem" title="Map" id="wEw-PB-ua0" userLabel="title.mapview">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="TFt-q7-CW2">
                             <connections>
                                 <segue destination="i3O-NR-l6N" kind="show" identifier="tour.details" id="HUH-0a-OPU"/>
@@ -73,13 +73,13 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0gQ-HX-pmP" id="37R-3g-3no">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kgm-DG-7xZ">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kgm-DG-7xZ" userLabel="tourItem.title">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PKa-uq-XLy">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PKa-uq-XLy" userLabel="tourItem.subtitle">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,7 +94,7 @@
                             <outlet property="delegate" destination="i3O-NR-l6N" id="Y0p-xA-spO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tour" id="hvq-9o-Sk0">
+                    <navigationItem key="navigationItem" title="Tour" id="hvq-9o-Sk0" userLabel="title.tour">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="H3A-0F-Z6B"/>
                     </navigationItem>
                 </tableViewController>

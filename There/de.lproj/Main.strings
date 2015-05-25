@@ -1,0 +1,12 @@
+/* Class = "UILabel"; text = "Title"; ObjectID = "Kgm-DG-7xZ"; */
+"Kgm-DG-7xZ.text" = "Titel";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "PKa-uq-XLy"; */
+"PKa-uq-XLy.text" = "Details";
+
+/* Class = "UINavigationItem"; title = "Tour"; ObjectID = "hvq-9o-Sk0"; */
+"hvq-9o-Sk0.title" = "Wegpunkte";
+
+/* Class = "UINavigationItem"; title = "Map"; ObjectID = "wEw-PB-ua0"; */
+"wEw-PB-ua0.title" = "Karte";
+

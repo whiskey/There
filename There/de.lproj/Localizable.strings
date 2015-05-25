@@ -1,0 +1,15 @@
+/* No comment provided by engineer. */
+"label.cancel" = "abbrechen";
+
+/* No comment provided by engineer. */
+"label.settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"nogpspermission.message" = "Um optimale Suchergebnisse anzeigen zu können, benötigen wir Ihre GPS Position";
+
+/* No comment provided by engineer. */
+"nogpspermission.title" = "Keine GPS Daten";
+
+/* No comment provided by engineer. */
+"searchbar.placeholder" = "Suchen…";
+
