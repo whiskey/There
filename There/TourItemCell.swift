@@ -10,15 +10,17 @@ import UIKit
 
 class TourItemCell: UITableViewCell {
 
+    var item:GeoItem!
+    @IBOutlet weak var waypointImageView: UIImageView!
+    @IBOutlet weak var waypointLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setup(geoItem:GeoItem) {
+        self.item = geoItem
+        waypointLabel.text = "\(item.title)\n\(item.vicinity)"
     }
-
 }

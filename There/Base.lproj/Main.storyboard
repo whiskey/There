@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zVC-hO-a83">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -63,7 +64,7 @@
         <scene sceneID="0tO-F9-cDv">
             <objects>
                 <tableViewController id="i3O-NR-l6N" customClass="TourViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gWh-jG-cJR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="10" sectionFooterHeight="10" id="gWh-jG-cJR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -87,25 +88,37 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="tourItem" textLabel="Kgm-DG-7xZ" detailTextLabel="PKa-uq-XLy" rowHeight="69" style="IBUITableViewCellStyleSubtitle" id="0gQ-HX-pmP" customClass="TourItemCell" customModule="There" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="tourItem" rowHeight="100" id="0gQ-HX-pmP" customClass="TourItemCell" customModule="There" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0gQ-HX-pmP" id="37R-3g-3no">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kgm-DG-7xZ" userLabel="tourItem.title">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zgg-E4-3vA">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgM-qA-xf0">
+                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                            <color key="backgroundColor" red="0.30182686237373735" green="0.30182686237373735" blue="0.30182686237373735" alpha="0.070000000000000007" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PKa-uq-XLy" userLabel="tourItem.subtitle">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="shadowOffset" width="-1" height="-1"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Zgg-E4-3vA" firstAttribute="leading" secondItem="37R-3g-3no" secondAttribute="leading" id="IGx-Uv-FhV"/>
+                                        <constraint firstItem="Zgg-E4-3vA" firstAttribute="top" secondItem="37R-3g-3no" secondAttribute="top" id="N79-sU-LjH"/>
+                                        <constraint firstAttribute="bottom" secondItem="Zgg-E4-3vA" secondAttribute="bottom" id="NJ0-UB-qje"/>
+                                        <constraint firstAttribute="trailing" secondItem="Zgg-E4-3vA" secondAttribute="trailing" id="dpH-EI-Gg2"/>
+                                        <constraint firstItem="TgM-qA-xf0" firstAttribute="leading" secondItem="37R-3g-3no" secondAttribute="leadingMargin" id="qQm-N2-LyN"/>
+                                        <constraint firstItem="TgM-qA-xf0" firstAttribute="top" secondItem="37R-3g-3no" secondAttribute="topMargin" id="yYw-7z-Iq6"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="waypointImageView" destination="Zgg-E4-3vA" id="2fS-Aw-guM"/>
+                                    <outlet property="waypointLabel" destination="TgM-qA-xf0" id="wSe-rp-jAy"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

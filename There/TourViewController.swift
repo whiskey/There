@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import MapKit
 
 class TourViewController: UITableViewController {
 
     @IBOutlet weak var tableHeaderLabel: UILabel!
+    let geoCoder = CLGeocoder()
     var model:TourModel!
+    
     lazy var hintView:UIView = {
         // very simple tableview background
         var hintView = UIView(frame: self.tableView.bounds)
@@ -98,10 +101,13 @@ class TourViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tourItem", forIndexPath: indexPath) as! TourItemCell
         let item = model.tourItems[indexPath.row]
+        cell.setup(item)
         
-        cell.textLabel?.text = item.title
-        cell.detailTextLabel?.text = item.vicinity
-        
+        render(waypoint: item, size: cell.bounds.size) { (image) -> Void in
+            if (image != nil) {
+                cell.waypointImageView.image = image
+            }
+        }
         return cell
     }
 
@@ -123,5 +129,39 @@ class TourViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             updateTourFacts()
         }
+    }
+    
+    // MARK: -
+    
+    /// renders a map snapshot of a given GeoItem
+    func render(waypoint item:GeoItem, size:CGSize, completionBlock:(image:UIImage?) -> Void) {
+        let loc = CLLocation(latitude: item.coordinate.latitude, longitude: item.coordinate.longitude)
+        geoCoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks, error) -> Void in
+            if (error != nil) {
+                completionBlock(image: nil)
+            }
+            
+            // TODO: renderer!
+            /*
+            CLPlacemark *pm = [placemarks firstObject];
+            
+            MKMapSnapshotOptions *options = [MKMapSnapshotOptions new];
+            CLCircularRegion *region = (CLCircularRegion *)pm.region;
+            options.region = MKCoordinateRegionMakeWithDistance(region.center, region.radius, region.radius);
+            options.scale = [UIScreen mainScreen].scale;
+            options.size = CGSizeMake([UIScreen mainScreen].bounds.size.width, 120);
+            options.showsPointsOfInterest = YES;
+            
+            MKMapSnapshotter *snapshotter = [[MKMapSnapshotter alloc] initWithOptions:options];
+            [snapshotter startWithCompletionHandler:^(MKMapSnapshot *snapshot, NSError *error) {
+                if (error) { NSLog(@"%@", error); }
+                
+                completionBlock(snapshot.image);
+            }];
+            */
+            
+            var img = UIImage(named: "hint")// fake!
+            completionBlock(image: img)
+        })
     }
 }
