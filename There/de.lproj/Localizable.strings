@@ -1,8 +1,23 @@
 /* No comment provided by engineer. */
 "label.cancel" = "abbrechen";
 
+/* a hint how to add new waypoints */
+"label.hint.nowps" = "Füge Wegpunkte deiner Tour hinzu um diese hier zu bearbeiten.";
+
 /* No comment provided by engineer. */
 "label.settings" = "Einstellungen";
+
+/* (No Commment) */
+"label.tour.legs" = "%@ Wegpunkte";
+
+/* number of waypoints in the tour */
+"label.tour.legs.one" = "%@ Wegpunkt";
+
+/* number of waypoints in the tour */
+"label.tour.legs.other" = "%@ Wegpunkte";
+
+/* number of waypoints in the tour */
+"label.tour.legs.zero" = "Keine Wegpunkte";
 
 /* No comment provided by engineer. */
 "nogpspermission.message" = "Um optimale Suchergebnisse anzeigen zu können, benötigen wir Ihre GPS Position";

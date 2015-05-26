@@ -1,8 +1,23 @@
 /* No comment provided by engineer. */
 "label.cancel" = "cancel";
 
+/* a hint how to add new waypoints */
+"label.hint.nowps" = "Please add waypoints in order to manage your tour here.";
+
 /* No comment provided by engineer. */
 "label.settings" = "app settings";
+
+/* (No Commment) */
+"label.tour.legs" = "%@ waypoints";
+
+/* number of waypoints in the tour */
+"label.tour.legs.one" = "%@ waypoint";
+
+/* number of waypoints in the tour */
+"label.tour.legs.other" = "%@ waypoints";
+
+/* number of waypoints in the tour */
+"label.tour.legs.zero" = "no waypoints";
 
 /* No comment provided by engineer. */
 "nogpspermission.message" = "To present optimal results we need access to your GPS data";

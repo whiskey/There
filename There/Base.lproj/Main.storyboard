@@ -63,10 +63,29 @@
         <scene sceneID="0tO-F9-cDv">
             <objects>
                 <tableViewController id="i3O-NR-l6N" customClass="TourViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" id="gWh-jG-cJR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gWh-jG-cJR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="hbQ-gi-95M">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tour facts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic1-WN-zvk" userLabel="label.tourfacts">
+                                    <rect key="frame" x="8" y="8" width="584" height="28"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Ic1-WN-zvk" secondAttribute="bottom" constant="8" id="2dy-w1-aJJ"/>
+                                <constraint firstAttribute="trailing" secondItem="Ic1-WN-zvk" secondAttribute="trailing" constant="8" id="Itz-el-Tl3"/>
+                                <constraint firstItem="Ic1-WN-zvk" firstAttribute="leading" secondItem="hbQ-gi-95M" secondAttribute="leading" constant="8" id="NNK-7a-ICR"/>
+                                <constraint firstItem="Ic1-WN-zvk" firstAttribute="top" secondItem="hbQ-gi-95M" secondAttribute="top" constant="8" id="ocf-cQ-eXI"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="tourItem" textLabel="Kgm-DG-7xZ" detailTextLabel="PKa-uq-XLy" rowHeight="69" style="IBUITableViewCellStyleSubtitle" id="0gQ-HX-pmP" customClass="TourItemCell" customModule="There" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -75,13 +94,13 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kgm-DG-7xZ" userLabel="tourItem.title">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PKa-uq-XLy" userLabel="tourItem.subtitle">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -97,11 +116,14 @@
                     <navigationItem key="navigationItem" title="Tour" id="hvq-9o-Sk0" userLabel="title.tour">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="H3A-0F-Z6B"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableHeaderLabel" destination="Ic1-WN-zvk" id="QvU-Kj-Kji"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxx-c3-bLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1377" y="438"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.2346659109" green="0.61736505679999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.23529411764705882" green="0.61960784313725492" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
 </document>
