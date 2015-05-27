@@ -16,6 +16,7 @@ class GeoItem: NSObject {
     var href:String?
     var title:String?
     var vicinity:String?
+    var distanceInMeters:Int?
 
     init(identifier id:String, latitude lat:Double, longitude lng:Double) {
         self.id = id
@@ -35,7 +36,6 @@ class GeoItem: NSObject {
         } else {
             coordinate = CLLocationCoordinate2DMake(0, 0)
         }
-        
         if let href = dict["href"] as? String {
             self.href = href
         }
@@ -44,6 +44,9 @@ class GeoItem: NSObject {
         }
         if let vicinity = dict["vicinity"] as? String {
             self.vicinity = vicinity
+        }
+        if let distance = dict["distance"] as? Int {
+            self.distanceInMeters = distance
         }
     }
     

@@ -13,6 +13,12 @@ class TourViewController: UITableViewController {
 
     @IBOutlet weak var tableHeaderLabel: UILabel!
     let geoCoder = CLGeocoder()
+    let lengthFormatter:NSLengthFormatter = {
+        // more flexible than MKDistanceFormatter (unit conversion!)
+        let lf = NSLengthFormatter()
+        lf.numberFormatter.maximumFractionDigits = 1
+        return lf
+    }()
     var model:TourModel!
     
     lazy var hintView:UIView = {
@@ -101,7 +107,7 @@ class TourViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("tourItem", forIndexPath: indexPath) as! TourItemCell
         let item = model.tourItems[indexPath.row]
-        cell.setup(item)
+        cell.setup(item, distanceFormatter: lengthFormatter)
         return cell
     }
 

@@ -9,21 +9,46 @@
 import UIKit
 
 class TourItemCell: UITableViewCell {
-
+    
     var item:GeoItem!
     private let geoCoder = CLGeocoder()
+    
     @IBOutlet weak var waypointImageView: UIImageView!
     @IBOutlet weak var waypointLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        waypointLabel.preferredMaxLayoutWidth = CGRectGetWidth(bounds)
+        waypointLabel.preferredMaxLayoutWidth = CGRectGetWidth(bounds) - CGRectGetMinX(frame)
     }
 
-    func setup(geoItem:GeoItem) {
+    func setup(geoItem:GeoItem, distanceFormatter formatter:NSLengthFormatter) {
         self.item = geoItem
-        waypointLabel.text = "\(item.title!)\n\(item.vicinity!)"
+        
+        // headline: name and distance to waypoint
+        var attributes = [
+            NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        ]
+        var headline = item.title!
+        if item.distanceInMeters > 0 {
+            let dist = formatter.stringFromMeters(Double(item.distanceInMeters!))
+            headline += " – \(dist)"
+        }
+        var labelString = NSMutableAttributedString(string: headline, attributes: attributes)
+        
+        // subhead: vicinity
+        attributes = [
+            NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+        ]
+        if item.vicinity != nil {
+            let details = "\n\(item.vicinity!)"
+            var subhead = NSAttributedString(string: details, attributes: attributes)
+            labelString.appendAttributedString(subhead)
+        }
+        
+        waypointLabel.attributedText = labelString
+        
+        // render background image
         render(waypoint: self.item, size: bounds.size) { (image) -> Void in
             self.waypointImageView.image = image
         }
