@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class TourItemCell: UITableViewCell {
     
@@ -31,7 +32,7 @@ class TourItemCell: UITableViewCell {
         ]
         var headline = item.title!
         if item.distanceInMeters > 0 {
-            let dist = formatter.stringFromMeters(Double(item.distanceInMeters!))
+            let dist = formatter.stringFromMeters(Double(item.distanceInMeters))
             headline += " – \(dist)"
         }
         var labelString = NSMutableAttributedString(string: headline, attributes: attributes)

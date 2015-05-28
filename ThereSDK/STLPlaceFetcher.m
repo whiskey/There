@@ -7,7 +7,6 @@
 //
 
 #import "STLPlaceFetcher.h"
-#import "There-Swift.h"
 
 
 @implementation STLPlaceRequest
@@ -16,17 +15,43 @@
 }
 @end
 
+@implementation STLLinkObject
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
+    self = [super init];
+    if (self) {
+        // super simple "parser" - don't treat this thing serious!
+        self.identifier = [dict valueForKey:@"id"];
+        NSAssert(self.identifier, @"must have an identifier!");
+        
+        self.href = [dict valueForKey:@"href"];
+        
+        NSArray *coordinates = [dict valueForKey:@"position"];
+        if (coordinates.count >= 2) {
+            self.coordinate = CLLocationCoordinate2DMake([coordinates[0] doubleValue], [coordinates[1] doubleValue]);
+        }
+        
+        self.title = [dict valueForKey:@"title"];
+        self.vicinity = [dict valueForKey:@"vicinity"];
+        self.distanceInMeters = [[dict valueForKey:@"distance"] integerValue];
+        // better:
+        // generate parsers & validators based on the object's XML schema
+    }
+    return self;
+}
+@end
+
 
 @implementation STLPlaceFetcher
 
-- (instancetype)init {
+- (instancetype)initWithAppID:(NSString *)appID appCode:(NSString *)appCode {
 #if DEBUG
     NSURL *baseURL = [NSURL URLWithString:@"https://places.cit.api.here.com"];
 #else
 #warning using Demo API instead of Production (http://places.api.here.com)
     NSURL *baseURL = [NSURL URLWithString:@"https://places.cit.api.here.com"];
 #endif
-    return [super initWithBaseURL:baseURL];
+    return [super initWithBaseURL:baseURL appID:appID appCode:appCode];
 }
 
 #pragma mark - STLPlaceRequestProtocol
@@ -67,7 +92,7 @@
           if (completionBlock != nil) {
               NSMutableArray *items = [NSMutableArray array];
               for (NSDictionary *dict in [responseObject valueForKeyPath:@"results.items"]) {
-                  GeoItem *item = [[GeoItem alloc] initWithDictionary:dict];
+                  STLLinkObject *item = [[STLLinkObject alloc] initWithDictionary:dict];
                   [items addObject:item];
               }
               completionBlock([NSArray arrayWithArray:items], nil);

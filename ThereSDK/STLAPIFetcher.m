@@ -7,7 +7,6 @@
 //
 
 #import "STLAPIFetcher.h"
-#import "There-Swift.h"
 
 #if DEBUG
 static BOOL isProductionEnvironment = NO;
@@ -17,7 +16,7 @@ static BOOL isProductionEnvironment = YES;
 
 @implementation STLAPIFetcher
 
-- (instancetype)initWithBaseURL:(NSURL *)url {
+- (instancetype)initWithBaseURL:(NSURL *)url appID:(NSString *)appID appCode:(NSString *)appCode {
     self = [super initWithBaseURL:url];
     if (self) {
         self.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -26,8 +25,6 @@ static BOOL isProductionEnvironment = YES;
         // Accept (here: application/json),  Accept-Language and others
         
         // authentication
-        NSString *appID = [LocalConfig hereAppID];
-        NSString *appCode = [LocalConfig hereAppCode];
         NSString *combined = [NSString stringWithFormat:@"%@:%@", appID, appCode];
         NSString *token = [NSString stringWithFormat:@"Basic %@", [[combined dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0]];
         [self.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];

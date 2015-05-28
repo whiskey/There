@@ -26,6 +26,24 @@
 
 
 
+@interface STLLinkObject : NSObject
+@property (copy, nonatomic) NSString *identifier;
+@property (assign, nonatomic) CLLocationCoordinate2D coordinate;
+
+/// Reference URL to this link
+@property (copy, nonatomic) NSString *href;
+/// The label/description of this link
+@property (copy, nonatomic) NSString *title;
+/// String describing the vicinity of this link
+@property (copy, nonatomic) NSString *vicinity;
+/// The distance from the search reference point to this link
+@property (assign, nonatomic) NSInteger distanceInMeters;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
+@end
+
+
+
 @protocol STLPlaceRequestProtocol <NSObject>
 
 - (void)searchSuggestionsForQuery:(STLPlaceRequest *)request complete:(void (^)(NSArray *suggestions, NSError *error))completionBlock;
@@ -38,5 +56,5 @@
 
 
 @interface STLPlaceFetcher : STLAPIFetcher <STLPlaceRequestProtocol>
-- (instancetype)init;
+- (instancetype)initWithAppID:(NSString *)appID appCode:(NSString *)appCode;
 @end

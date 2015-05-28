@@ -3,15 +3,16 @@ platform :ios, '8.0'
 use_frameworks!
 
 
-target 'There' do
+target :There do
 pod 'XCGLogger', '~> 2.0'
+end
+
+target :ThereTests do
+pod 'XCGLogger', '~> 2.0'
+end
+
 
 ## Objective-C
+
 pod "AFNetworking", '~> 2.0'
-
-end
-
-target 'ThereTests' do
-pod 'XCGLogger', '~> 2.0'
-end
-
+link_with 'ThereSDK', 'ThereSDKTests'

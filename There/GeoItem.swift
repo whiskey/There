@@ -8,57 +8,26 @@
 
 import UIKit
 import MapKit
+import ThereSDK
 
-class GeoItem: NSObject {
-    let id:String
-    let coordinate: CLLocationCoordinate2D
-    
-    var href:String?
-    var title:String?
-    var vicinity:String?
-    var distanceInMeters:Int?
+
+class GeoItem: STLLinkObject {
 
     init(identifier id:String, latitude lat:Double, longitude lng:Double) {
-        self.id = id
-        coordinate = CLLocationCoordinate2DMake(lat, lng)
-    }
-    
-    init(dictionary dict:NSDictionary) {
-        assert(dict["type"] as! String == "urn:nlp-types:place", "invalid data dictionary")
-        
-        if let id = dict["id"] as? String {
-            self.id = id
-        } else { // TODO: handle this case
-            id = "undefined"
-        }
-        if let position = dict["position"] as? [Double] {
-            coordinate = CLLocationCoordinate2DMake(position[0], position[1])
-        } else {
-            coordinate = CLLocationCoordinate2DMake(0, 0)
-        }
-        if let href = dict["href"] as? String {
-            self.href = href
-        }
-        if let title = dict["title"] as? String {
-            self.title = title
-        }
-        if let vicinity = dict["vicinity"] as? String {
-            self.vicinity = vicinity
-        }
-        if let distance = dict["distance"] as? Int {
-            self.distanceInMeters = distance
-        }
+//        identifier = id
+//        coordinate = CLLocationCoordinate2DMake(lat, lng)
+        super.init()
     }
     
     override func isEqual(object: AnyObject?) -> Bool {
         if let object = object as? GeoItem {
-            return id == object.id
+            return identifier == object.identifier
         } else {
             return false
         }
     }
     
     override var hash: Int {
-        return id.hashValue
+        return identifier.hashValue
     }
 }

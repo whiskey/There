@@ -7,7 +7,6 @@
 //
 
 #import "STLRouteFetcher.h"
-#import "There-Swift.h"
 
 @implementation STLRouteRequest
 @end
@@ -17,7 +16,7 @@
 
 @implementation STLRouteFetcher
 
-- (instancetype)init {
+- (instancetype)initWithAppID:(NSString *)appID appCode:(NSString *)appCode {
 #if DEBUG
     NSURL *baseURL = [NSURL URLWithString:@"http://route.cit.api.here.com"];
 #else
@@ -29,8 +28,8 @@
         NSURLComponents *components = [NSURLComponents componentsWithURL:request.URL resolvingAgainstBaseURL:NO];
         NSMutableArray *queryItems = [NSMutableArray array];
         // no auth header here... m(
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"app_id" value:[LocalConfig hereAppID]]];
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"app_code" value:[LocalConfig hereAppCode]]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"app_id" value:appID]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"app_code" value:appCode]];
         
         for (NSString *key in [parameters allKeys]) {
             NSURLQueryItem *item = [NSURLQueryItem queryItemWithName:key value:parameters[key]];

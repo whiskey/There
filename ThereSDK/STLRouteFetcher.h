@@ -29,5 +29,5 @@
 
 
 @interface STLRouteFetcher : STLAPIFetcher <STLRouteRequestProtocol>
-- (instancetype)init;
+- (instancetype)initWithAppID:(NSString *)appID appCode:(NSString *)appCode;
 @end

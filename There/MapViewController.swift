@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import ThereSDK
 
 // a little too many protocols up here...
 class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, SearchDelegate, MKMapViewDelegate, TourModelDelegate {
@@ -18,8 +19,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     }()
     
     let locationManager = CLLocationManager()
-    let placeFetcher = STLPlaceFetcher()
-    let routeFetcher = STLRouteFetcher()
+    let placeFetcher = STLPlaceFetcher(appID: LocalConfig.hereAppID(), appCode: LocalConfig.hereAppCode())
+    let routeFetcher = STLRouteFetcher(appID: LocalConfig.hereAppID(), appCode: LocalConfig.hereAppCode())
     
     @IBOutlet weak var mapView: MKMapView!
     var polyline:MKPolyline?
