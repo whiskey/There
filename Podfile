@@ -10,9 +10,3 @@ end
 target :ThereTests do
 pod 'XCGLogger', '~> 2.0'
 end
-
-
-## Objective-C
-
-pod "AFNetworking", '~> 2.0'
-link_with 'ThereSDK', 'ThereSDKTests'

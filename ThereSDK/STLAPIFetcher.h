@@ -9,8 +9,7 @@
 @import Foundation;
 @import MapKit;
 
-#import <AFNetworking/AFNetworking.h>
-
+#import "AFNetworking.h"
 
 @interface STLAPIFetcher : AFHTTPRequestOperationManager
 - (instancetype)initWithBaseURL:(NSURL *)url appID:(NSString *)appID appCode:(NSString *)appCode;

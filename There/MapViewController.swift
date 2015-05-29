@@ -133,6 +133,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
                 }
             }
             self.mapView.addAnnotations(annotations)
+            self.mapView.showAnnotations(annotations, animated: true)
         })
     }
     
