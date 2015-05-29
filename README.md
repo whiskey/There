@@ -3,6 +3,7 @@
 Playing around with the Nokia HERE API
 
 ## Setup
+0. init update submodule `git submodule update --init`
 1. Build the project once; `LocalConfig.swift` in the `There` Project is created
 2. enter your HERE **app_id** and **app_code** into the LocalConfig
 3. run the app
