@@ -125,18 +125,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
             // add new annotation - if any
             var annotations:[GeoItemAnnotation] = []
             for i in items {
-                if let item = i as? GeoItem {
+                if let item = i as? STLLinkObject {
                     let a = GeoItemAnnotation(geoItem: item)
                     a.title = item.title
                     a.coordinate = item.coordinate
                     annotations.append(a)
                 }
             }
-            if count(annotations) > 0 {
-                self.mapView.addAnnotations(annotations)
-                self.mapView.showAnnotations(annotations, animated: true)
-            }
-            
+            self.mapView.addAnnotations(annotations)
         })
     }
     
@@ -161,7 +157,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchRe
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         if let annotation = view.annotation as? GeoItemAnnotation {
             let item = annotation.geoItem
-            model.addGeoItem(item)
+            model.addSTLLinkObject(item)
             mapView.deselectAnnotation(annotation, animated: true)
         }
     }

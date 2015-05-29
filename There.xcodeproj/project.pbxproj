@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3544F8121B1652890018F7FE /* TourModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544F8111B1652890018F7FE /* TourModelTests.swift */; };
 		3544F8131B1654400018F7FE /* TourModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFB21B110A7A00EE05F5 /* TourModel.swift */; };
-		3544F8151B16544B0018F7FE /* GeoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFA91B10BF4A00EE05F5 /* GeoItem.swift */; };
 		356A2A1C1B1853A9005FCC5F /* AFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 356A29821B1853A8005FCC5F /* AFHTTPRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		356A2A1D1B1853A9005FCC5F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 356A29831B1853A8005FCC5F /* AFHTTPRequestOperation.m */; };
 		356A2A1E1B1853A9005FCC5F /* AFHTTPRequestOperationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 356A29841B1853A8005FCC5F /* AFHTTPRequestOperationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,7 +29,6 @@
 		356A2A2D1B1853A9005FCC5F /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 356A29931B1853A8005FCC5F /* AFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		356A2A2E1B1853A9005FCC5F /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 356A29941B1853A8005FCC5F /* AFURLSessionManager.m */; };
 		3579FFA81B10A74200EE05F5 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFA71B10A74200EE05F5 /* SearchResultCell.swift */; };
-		3579FFAA1B10BF4A00EE05F5 /* GeoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFA91B10BF4A00EE05F5 /* GeoItem.swift */; };
 		3579FFAC1B10E03500EE05F5 /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFAB1B10E03500EE05F5 /* TourViewController.swift */; };
 		3579FFAF1B10E2B400EE05F5 /* GeoItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFAE1B10E2B400EE05F5 /* GeoItemAnnotation.swift */; };
 		3579FFB11B10E7FC00EE05F5 /* TourItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3579FFB01B10E7FC00EE05F5 /* TourItemCell.swift */; };
@@ -130,7 +128,6 @@
 		356A29931B1853A8005FCC5F /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		356A29941B1853A8005FCC5F /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		3579FFA71B10A74200EE05F5 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
-		3579FFA91B10BF4A00EE05F5 /* GeoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoItem.swift; sourceTree = "<group>"; };
 		3579FFAB1B10E03500EE05F5 /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
 		3579FFAE1B10E2B400EE05F5 /* GeoItemAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoItemAnnotation.swift; sourceTree = "<group>"; };
 		3579FFB01B10E7FC00EE05F5 /* TourItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourItemCell.swift; sourceTree = "<group>"; };
@@ -335,7 +332,6 @@
 				3579FFB01B10E7FC00EE05F5 /* TourItemCell.swift */,
 				3579FFAE1B10E2B400EE05F5 /* GeoItemAnnotation.swift */,
 				3579FFB21B110A7A00EE05F5 /* TourModel.swift */,
-				3579FFA91B10BF4A00EE05F5 /* GeoItem.swift */,
 				3579FFAD1B10E15500EE05F5 /* Search */,
 			);
 			path = There;
@@ -716,7 +712,6 @@
 				3579FFAC1B10E03500EE05F5 /* TourViewController.swift in Sources */,
 				35F546781B0F8E3800385C63 /* MapViewController.swift in Sources */,
 				3579FFAF1B10E2B400EE05F5 /* GeoItemAnnotation.swift in Sources */,
-				3579FFAA1B10BF4A00EE05F5 /* GeoItem.swift in Sources */,
 				35F546811B0FA1C100385C63 /* LocalConfig.swift in Sources */,
 				35866E781B1054B0007E4D19 /* SearchResultsController.swift in Sources */,
 				35F546581B0F8C4100385C63 /* AppDelegate.swift in Sources */,
@@ -728,7 +723,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3544F8131B1654400018F7FE /* TourModel.swift in Sources */,
-				3544F8151B16544B0018F7FE /* GeoItem.swift in Sources */,
 				3544F8121B1652890018F7FE /* TourModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,10 +8,11 @@
 
 import UIKit
 import MapKit
+import ThereSDK
 
 class TourItemCell: UITableViewCell {
     
-    var item:GeoItem!
+    var item:STLLinkObject!
     private let geoCoder = CLGeocoder()
     
     @IBOutlet weak var waypointImageView: UIImageView!
@@ -23,7 +24,7 @@ class TourItemCell: UITableViewCell {
         waypointLabel.preferredMaxLayoutWidth = CGRectGetWidth(bounds) - CGRectGetMinX(frame)
     }
 
-    func setup(geoItem:GeoItem, distanceFormatter formatter:NSLengthFormatter) {
+    func setup(geoItem:STLLinkObject, distanceFormatter formatter:NSLengthFormatter) {
         self.item = geoItem
         
         // headline: name and distance to waypoint
@@ -55,7 +56,7 @@ class TourItemCell: UITableViewCell {
         }
     }
     
-    func render(waypoint item:GeoItem, size:CGSize, completionBlock:(image:UIImage?) -> Void) {
+    func render(waypoint item:STLLinkObject, size:CGSize, completionBlock:(image:UIImage?) -> Void) {
         let loc = CLLocation(latitude: item.coordinate.latitude, longitude: item.coordinate.longitude)
         geoCoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks, error) -> Void in
             if (error != nil) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import ThereSDK
 
 
 class GeoItemAnnotation: MKPointAnnotation {
@@ -15,9 +16,9 @@ class GeoItemAnnotation: MKPointAnnotation {
         return "GeoItemAnnotation"
     }
     
-    var geoItem:GeoItem!
+    var geoItem:STLLinkObject!
     
-    init(geoItem:GeoItem) {
+    init(geoItem:STLLinkObject) {
         self.geoItem = geoItem
     }
     

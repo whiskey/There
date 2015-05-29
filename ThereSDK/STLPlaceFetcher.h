@@ -40,6 +40,7 @@
 @property (assign, nonatomic) NSInteger distanceInMeters;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
+- (instancetype)initWithIdentifier:(NSString *)identifier;
 @end
 
 

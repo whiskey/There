@@ -8,15 +8,16 @@
 
 import UIKit
 import MapKit
+import ThereSDK
 
 protocol TourModelDelegate {
     func didUpdateTour() // quick and dirty
 }
 
 protocol TourModelProtocol {
-    var tourItems:[GeoItem] { get set }
+    var tourItems:[STLLinkObject] { get set }
     
-    func addGeoItem(item: GeoItem)
+    func addSTLLinkObject(item: STLLinkObject)
     func moveItem(from sourceIndexPath: NSIndexPath, to destinationIndexPath: NSIndexPath)
     func removeItem(at indexPath: NSIndexPath)
     
@@ -28,12 +29,12 @@ private let _StaticTourModel = TourModel()
 class TourModel: TourModelProtocol {
     static let sharedInstance = TourModel()
     
-    var tourItems:[GeoItem] = []
+    var tourItems:[STLLinkObject] = []
     var delegate: TourModelDelegate?
     
     // MARK: - CR(U)D operations
     
-    func addGeoItem(item:GeoItem) {
+    func addSTLLinkObject(item:STLLinkObject) {
         if let index = find(tourItems, item) {
             // put the selected item at first index
             tourItems.removeAtIndex(index)

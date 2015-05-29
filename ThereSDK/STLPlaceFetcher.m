@@ -39,6 +39,27 @@
     }
     return self;
 }
+
+- (instancetype)initWithIdentifier:(NSString *)identifier {
+    NSDictionary *dict = @{ @"id": identifier };
+    return [self initWithDictionary:dict];
+}
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    if (![object isKindOfClass:[STLLinkObject class]]) {
+        return NO;
+    }
+    
+    return [self.identifier isEqualToString:[(STLLinkObject *)object identifier]];
+}
+
+- (NSUInteger)hash {
+    return self.identifier.hash;
+}
+
 @end
 
 
